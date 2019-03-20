@@ -3,8 +3,9 @@
   gather_facts: false
   connection: local
   vars:
-   user: '{{username}}'
-   password: '{{password}}'
+   user: 'awx'
+   password: 'qw583H&bBE5qYKAy'
+ 
   tasks:
   - name: Check if port 23 is listening
     wait_for:
@@ -15,11 +16,8 @@
         msg: "Timeout waiting for 23 to respond"
     register: port_check
     ignore_errors: yes
-
-  - name: initial command to file
-    shell: echo 'show version' > ./scripts/run_commands.txt
-
+    
   - name: Executing the expect script
-    script: ./scripts/get_commands.expect '{{ ansible_host }}' '{{ user }}' '{{ password }}' ./scripts/run_commands.txt
+    script: ./scripts/get_commands.expect '{{ ansible_host }}' '{{ user }}' '{{ password }}' ./scripts/show-version.txt
     when: port_check.failed == false
     register: expect_out
