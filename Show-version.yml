@@ -18,6 +18,6 @@
     ignore_errors: yes
     
   - name: Executing the expect script
-    script: ./scripts/get_commands.expect '{{ ansible_host }}' '{{ user }}' '{{ password }}' ./scripts/show-version.txt
+    script: ./script/get_commands.expect '{{ ansible_host }}' '{{ user }}' '{{ password }}' ./script/show-version.txt
     when: port_check.failed == false
     register: expect_out
